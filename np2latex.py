@@ -1,9 +1,9 @@
-def numpy_to_latex(arr, column=True):
+def np2latex(arr, column=True):
     if len(arr.shape) == 2:
         return _make_matrix(arr)
     elif len(arr.shape) == 1:
         if column:
-            return _make_column_vector(arr)
+            return _make_matrix(arr.reshape(1, -1)
         else:
             return _make_row_vector(arr)
     else:
@@ -19,7 +19,8 @@ def _make_matrix(arr):
 
 def _make_row_vector(arr):
     left, right = "\\left( ", " \\right)"
-    return left + _make_row_format_string(arr, join_str=" ") + right
+    middle = _make_row_format_string(arr.shape[0], join_str=" ") 
+    return left + middle + right
 
 def _make_row_format_string(n_columns, format_str=":2.2f", join_str=" & "):
     return join_str.join(["{" + format_str + "}"]*n_columns) + r" \\"
