@@ -17,10 +17,5 @@ def _make_matrix(arr):
             for row in arr]
     return left + ' '.join(rows) + right
 
-def _make_row_vector(arr):
-    left, right = "\\left( ", " \\right)"
-    middle = _make_row_format_string(arr.shape[0], join_str=" ") 
-    return left + middle.format(*arr) + right
-
 def _make_row_format_string(n_columns, format_str=":2.2f", join_str=" & "):
     return join_str.join(["{" + format_str + "}"]*n_columns) + r" \\"
