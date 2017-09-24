@@ -1,4 +1,24 @@
+import numpy as np
+
+
 def np2latex(arr, column=True):
+    """Return latex markdown representing a numpy array.
+
+    Parameters
+    ----------
+    arr: array, shape (n, p), (n,) or (1, n)
+        A numpy array.
+
+    column: boolean
+        When the arr argument is one dimensional, this controls whether to
+        return latex for a column or row vector. Defaults to True (indicating a
+        column vector).
+
+    Returns
+    -------
+    latex: string
+        A latex string.
+    """
     if len(arr.shape) == 2:
         return _make_matrix(arr)
     elif len(arr.shape) == 1:
